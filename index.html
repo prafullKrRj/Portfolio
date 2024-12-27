@@ -48,7 +48,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Theme Switcher Styles */
         .theme-switch-wrapper {
             position: fixed;
             top: 1rem;
@@ -185,192 +184,11 @@
             color: var(--bg-primary);
         }
 
-        section {
-            margin-bottom: 6rem;
-            padding: 0 1rem;
-        }
-
-        .section-title {
-            font-size: 2.25rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            position: relative;
-            color: var(--text-primary);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            padding: 1rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-tag {
-            background: var(--skill-bg);
-            color: var(--skill-text);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background: var(--primary);
-            color: var(--bg-primary);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-links a {
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .project-links a:hover {
-            transform: scale(1.1);
-        }
-
-        .project-links img {
-            height: 32px;
-            width: auto;
-        }
-
         footer {
             text-align: center;
             padding: 3rem 0;
             background: var(--bg-secondary);
             color: var(--text-secondary);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            header {
-                padding: 4rem 0 3rem;
-                border-radius: 0 0 2rem 2rem;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .profile-img {
-                width: 150px;
-                height: 150px;
-            }
-
-            .social-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .social-links a {
-                padding: 0.5rem 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .projects {
-                grid-template-columns: 1fr;
-                padding: 0.5rem;
-            }
-
-            .theme-switch-wrapper {
-                top: 0.5rem;
-                right: 0.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .tagline {
-                font-size: 1.1rem;
-            }
-
-            .social-links a {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            animation: fadeInUp 0.6s ease forwards;
         }
     </style>
 </head>
@@ -385,141 +203,28 @@
     </div>
 
     <div class="container">
-        <!-- Rest of the content remains the same -->
         <header>
-            <img src="https://avatars.githubusercontent.com/u/129758522?v=4" alt="Prafull Kumar's Profile" class="profile-img animate">
-            <h1 class="animate">Prafull Kumar</h1>
-            <p class="tagline animate">Android Developer | Mobile App Enthusiast</p>
+            <img src="https://avatars.githubusercontent.com/u/129758522?v=4" alt="Prafull Kumar's Profile" class="profile-img">
+            <h1>Prafull Kumar</h1>
+            <p class="tagline">Android Developer | Mobile App Enthusiast</p>
             <div class="social-links">
-                <a href="https://github.com/prafullKrRj" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://linkedin.com/in/prafull-kumar-rajput" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="mailto:prafullkumar384@gmail.com">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
+                <a href="https://github.com/prafullKrRj" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com/in/prafull-kumar-rajput" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="mailto:prafullkumar384@gmail.com"><i class="fas fa-envelope"></i> Email</a>
             </div>
         </header>
-
-        <section>
-            <h2 class="section-title">About Me</h2>
-            <p class="about-content">
-                I'm an enthusiastic Android developer with a passion for creating intuitive and efficient mobile applications. 
-                Leveraging modern Android technologies and best practices, I focus on delivering exceptional user experiences 
-                through clean architecture and innovative solutions.
-            </p>
-        </section>
-
-        <section>
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects">
-                <!-- Project cards remain the same -->
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">AlgoAura</h3>
-                        <p class="project-description">
-                            An interactive platform for visualizing and learning algorithms with detailed explanations and
-                            practical examples. Features intuitive animations and comprehensive learning materials.
-                        </p>
-                        <div class="skills">
-                            <span class="skill-tag">Kotlin</span>
-                            <span class="skill-tag">Android Studio</span>
-                            <span class="skill-tag">MVVM</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.prafull.algorithms" target="_blank">
-                                <img alt="Play Store" src="https://camo.githubusercontent.com/1ddf90e524a4bfe8b77f9a6902d54fc708380389b7e0d7f9ad29196a799e77db/68747470733a2f2f706c61792e676f6f676c652e636f6d2f696e746c2f656e5f75732f6261646765732f696d616765732f67656e657269632f656e2d706c61792d62616467652e706e67">
-                            </a>
-                            <a href="https://github.com/prafullKrRj/AlgoAura" target="_blank">
-                                <img alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Roadmap Creator</h3>
-                        <p class="project-description">
-                            A dynamic roadmap creation tool enabling students and professionals to visualize, plan, and track their 
-                            learning journey with customizable milestones and progress tracking.
-                        </p>
-                        <div class="skills">
-                            <span class="skill-tag">Kotlin</span>
-                            <span class="skill-tag">Jetpack Compose</span>
-                            <span class="skill-tag">Firestore</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.prafull.roadmapcreator" target="_blank">
-                                <img alt="Play Store" src="https://camo.githubusercontent.com/1ddf90e524a4bfe8b77f9a6902d54fc708380389b7e0d7f9ad29196a799e77db/68747470733a2f2f706c61792e676f6f676c652e636f6d2f696e746c2f656e5f75732f6261646765732f696d616765732f67656e657269632f656e2d706c61792d62616467652e706e67">
-                            </a>
-                            <a href="https://github.com/prafullKrRj/AlgoAura" target="_blank">
-                                <img alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Campus Pulse</h3>
-                        <p class="project-description">
-                            A community-driven platform connecting students through real-time campus updates, event management,
-                            and interactive features that enhance campus life engagement.
-                        </p>
-                        <div class="skills">
-                            <span class="skill-tag">Kotlin</span>
-                            <span class="skill-tag">Firebase</span>
-                            <span class="skill-tag">LiveData</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/prafullKrRj/Campuse-Pulse" target="_blank">
-                                <img alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <footer>
             <p>© 2024 Prafull Kumar. All rights reserved.</p>
         </footer>
     </div>
     <script>
-        // Theme switching functionality
         document.addEventListener('DOMContentLoaded', () => {
-            const themeToggle = document.getElementById('theme-toggle');
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                themeToggle.checked = savedTheme === 'dark';
-            }
-
-            // Theme toggle handler
-            themeToggle.addEventListener('change', (e) => {
-                if (e.target.checked) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    localStorage.setItem('theme', 'light');
-                }
+            const themeSwitch = document.querySelector('.theme-switch input');
+            themeSwitch.addEventListener('change', () => {
+                const theme = themeSwitch.checked ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', theme);
             });
-
-            // Add fade-in animation to elements with 'animate' class
-            const animatedElements = document.querySelectorAll('.animate');
-            animatedElements.forEach((element, index) => {
-                element.style.animationDelay = `${index * 0.2}s`;
-            });
-        });
-
-        // Optional: Add smooth transitions when switching themes
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.style.display = 'block';
         });
     </script>
 </body>
