@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +8,30 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-        :root {
+        :root[data-theme="light"] {
             --primary: #2563eb;
             --primary-light: #3b82f6;
-            --dark: #0f172a;
-            --gray-light: #f1f5f9;
-            --gray: #64748b;
-            --white: #ffffff;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --card-bg: #ffffff;
+            --header-bg: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            --skill-bg: #f1f5f9;
+            --skill-text: #2563eb;
+        }
+
+        :root[data-theme="dark"] {
+            --primary: #60a5fa;
+            --primary-light: #93c5fd;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --card-bg: #1e293b;
+            --header-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            --skill-bg: #334155;
+            --skill-text: #60a5fa;
         }
 
         * {
@@ -26,8 +43,74 @@
 
         body {
             line-height: 1.7;
-            color: var(--dark);
-            background-color: var(--white);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Theme Switcher Styles */
+        .theme-switch-wrapper {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--card-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--bg-secondary);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--primary);
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--bg-secondary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .theme-icon {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
         }
 
         .container {
@@ -40,7 +123,7 @@
             position: relative;
             text-align: center;
             padding: 6rem 0 4rem;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background: var(--header-bg);
             border-radius: 0 0 3rem 3rem;
             margin-bottom: 4rem;
         }
@@ -51,7 +134,7 @@
             border-radius: 50%;
             margin-bottom: 1.5rem;
             object-fit: cover;
-            border: 4px solid var(--white);
+            border: 4px solid var(--card-bg);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
@@ -64,14 +147,14 @@
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .tagline {
             font-size: 1.25rem;
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 2rem;
             font-weight: 500;
         }
@@ -84,11 +167,11 @@
         }
 
         .social-links a {
-            color: var(--dark);
+            color: var(--text-primary);
             text-decoration: none;
             padding: 0.75rem 1.5rem;
             border-radius: 50px;
-            background: var(--white);
+            background: var(--card-bg);
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
             font-weight: 500;
@@ -97,14 +180,9 @@
             gap: 0.5rem;
         }
 
-        .social-links a i {
-            font-size: 1.2rem;
-        }
-
         .social-links a:hover {
             background: var(--primary);
-            color: var(--white);
-            transform: translateY(-2px);
+            color: var(--bg-primary);
         }
 
         section {
@@ -117,7 +195,7 @@
             margin-bottom: 2rem;
             text-align: center;
             position: relative;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .section-title::after {
@@ -135,7 +213,7 @@
             margin: 0 auto;
             text-align: center;
             font-size: 1.1rem;
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         .projects {
@@ -146,12 +224,11 @@
         }
 
         .project-card {
-            background: var(--white);
+            background: var(--card-bg);
             border-radius: 1rem;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
         }
 
         .project-card:hover {
@@ -165,12 +242,12 @@
 
         .project-title {
             font-size: 1.5rem;
-            color: var(--dark);
+            color: var(--text-primary);
             margin-bottom: 0.75rem;
         }
 
         .project-description {
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
@@ -183,8 +260,8 @@
         }
 
         .skill-tag {
-            background: var(--gray-light);
-            color: var(--primary);
+            background: var(--skill-bg);
+            color: var(--skill-text);
             padding: 0.5rem 1rem;
             border-radius: 50px;
             font-size: 0.85rem;
@@ -194,7 +271,7 @@
 
         .skill-tag:hover {
             background: var(--primary);
-            color: var(--white);
+            color: var(--bg-primary);
         }
 
         .project-links {
@@ -219,8 +296,8 @@
         footer {
             text-align: center;
             padding: 3rem 0;
-            background: var(--gray-light);
-            color: var(--gray);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
         }
 
         @media (max-width: 768px) {
@@ -259,6 +336,11 @@
                 grid-template-columns: 1fr;
                 padding: 0.5rem;
             }
+
+            .theme-switch-wrapper {
+                top: 0.5rem;
+                right: 0.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -276,7 +358,6 @@
             }
         }
 
-        /* Animation classes */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -294,7 +375,17 @@
     </style>
 </head>
 <body>
+    <div class="theme-switch-wrapper">
+        <i class="fas fa-sun theme-icon"></i>
+        <label class="theme-switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+        </label>
+        <i class="fas fa-moon theme-icon"></i>
+    </div>
+
     <div class="container">
+        <!-- Rest of the content remains the same -->
         <header>
             <img src="https://avatars.githubusercontent.com/u/129758522?v=4" alt="Prafull Kumar's Profile" class="profile-img animate">
             <h1 class="animate">Prafull Kumar</h1>
@@ -324,6 +415,7 @@
         <section>
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects">
+                <!-- Project cards remain the same -->
                 <div class="project-card">
                     <div class="project-content">
                         <h3 class="project-title">AlgoAura</h3>
@@ -363,13 +455,12 @@
                             <a href="https://play.google.com/store/apps/details?id=com.prafull.roadmapcreator" target="_blank">
                                 <img alt="Play Store" src="https://camo.githubusercontent.com/1ddf90e524a4bfe8b77f9a6902d54fc708380389b7e0d7f9ad29196a799e77db/68747470733a2f2f706c61792e676f6f676c652e636f6d2f696e746c2f656e5f75732f6261646765732f696d616765732f67656e657269632f656e2d706c61792d62616467652e706e67">
                             </a>
-                            <a href="https://github.com/prafullKrRj/Roadmap-Creator" target="_blank">
+                            <a href="https://github.com/prafullKrRj/AlgoAura" target="_blank">
                                 <img alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
                             </a>
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card">
                     <div class="project-content">
                         <h3 class="project-title">Campus Pulse</h3>
