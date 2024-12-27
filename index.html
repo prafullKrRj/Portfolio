@@ -487,5 +487,40 @@
             <p>© 2024 Prafull Kumar. All rights reserved.</p>
         </footer>
     </div>
+    <script>
+        // Theme switching functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                themeToggle.checked = savedTheme === 'dark';
+            }
+
+            // Theme toggle handler
+            themeToggle.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Add fade-in animation to elements with 'animate' class
+            const animatedElements = document.querySelectorAll('.animate');
+            animatedElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+
+        // Optional: Add smooth transitions when switching themes
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
