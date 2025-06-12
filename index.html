@@ -404,6 +404,18 @@
         }
 
         /* Projects Section */
+        .projects-section {
+            margin-bottom: 4rem;
+        }
+
+        .projects-section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -419,7 +431,6 @@
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
-            group: hover;
         }
 
         .project-card:hover {
@@ -459,6 +470,10 @@
             background: var(--warning);
         }
 
+        .project-status.development {
+            background: var(--primary);
+        }
+
         .project-description {
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
@@ -485,6 +500,7 @@
         .project-links {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .project-link {
@@ -495,10 +511,26 @@
             text-decoration: none;
             font-size: 0.875rem;
             transition: all 0.2s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
         }
 
         .project-link:hover {
             color: var(--primary);
+            border-color: var(--primary);
+            background: var(--bg-accent);
+        }
+
+        .project-link.play-store {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .project-link.play-store:hover {
+            background: #059669;
+            transform: translateY(-2px);
         }
 
         /* Experience Section */
@@ -773,7 +805,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <img src="https://media.licdn.com/dms/image/v2/D4D03AQG_xEyZjA9Dhw/profile-displayphoto-shrink_800_800/B4DZZhuziIGsAc-/0/1745396382883?e=1752710400&v=beta&t=IQdBUksSOJ53lrrnQHYSK2nzxXNmJc97fj4rYDJDqfk" alt="Prafull Kumar" class="hero-image">
+            <img src="https://media.licdn.com/dms/image/v2/D4D03AQGmV1bcuDACPg/profile-displayphoto-shrink_400_400/B4DZb2bdrZHQAg-/0/1747891117340?e=1755129600&v=beta&t=xo0PnQEFrPIPpRhv1ymtHsbFQsHdLdQdrbSqzOAqIPs" alt="Prafull Kumar" class="hero-image">
             
             <h1 class="hero-title">Prafull Kumar</h1>
             <p class="hero-subtitle">Android Developer & Mobile App Enthusiast</p>
@@ -803,6 +835,9 @@
                 <a href="mailto:prafullkumar384@gmail.com" class="social-link">
                     <i class="fas fa-envelope"></i>
                 </a>
+                <a href="https://prafullkumar.com" target="_blank" class="social-link">
+                    <i class="fas fa-globe"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -821,7 +856,8 @@
                 <p>
                     My journey in mobile development has led me to work on diverse projects ranging from competitive programming 
                     helpers to algorithm visualization tools. I believe in writing clean, maintainable code and following best 
-                    practices to ensure scalable and robust applications.
+                    practices to ensure scalable and robust applications. Currently working as an Android Developer Intern at 
+                    Warewe Consultancy, contributing to innovative mobile solutions.
                 </p>
             </div>
         </div>
@@ -841,6 +877,7 @@
                     <span class="skill-tag">MVVM Architecture</span>
                     <span class="skill-tag">Coroutines</span>
                     <span class="skill-tag">Data Binding</span>
+                    <span class="skill-tag">Navigation Component</span>
                 </div>
             </div>
 
@@ -853,6 +890,7 @@
                     <span class="skill-tag">SQLite</span>
                     <span class="skill-tag">RESTful APIs</span>
                     <span class="skill-tag">Retrofit</span>
+                    <span class="skill-tag">OkHttp</span>
                 </div>
             </div>
 
@@ -864,6 +902,7 @@
                     <span class="skill-tag">Material Design</span>
                     <span class="skill-tag">UI/UX Design</span>
                     <span class="skill-tag">Gradle</span>
+                    <span class="skill-tag">Koin DI</span>
                     <span class="skill-tag">Problem Solving</span>
                 </div>
             </div>
@@ -872,94 +911,229 @@
 
     <!-- Projects Section -->
     <section id="projects" class="section">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card" onclick="window.open('apps/codeforcesly/', '_blank')">
-                <div class="project-content">
-                    <div class="project-header">
-                        <h3 class="project-title">CodeForcesly</h3>
-                        <span class="project-status beta">Beta</span>
+        <h2 class="section-title">My Projects</h2>
+        
+        <!-- Published Apps Section -->
+        <div class="projects-section">
+            <h3 class="projects-section-title">📱 Published Apps on Play Store</h3>
+            <div class="projects-grid">
+                <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.prafullkumar.codeforcesly', '_blank')">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">CodeForcesly</h3>
+                            <span class="project-status">Live</span>
+                        </div>
+                        <p class="project-description">
+                            A comprehensive Codeforces companion app that helps competitive programmers track their progress, 
+                            practice problems, and stay updated with contests. Features include profile tracking, contest notifications, 
+                            problem recommendations, and detailed analytics.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">MVVM</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">Material Design</span>
+                            <span class="tech-tag">Coroutines</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/prafullKrRj/CodeForcesly" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.prafullkumar.codeforcesly" target="_blank" class="project-link play-store">
+                                <i class="fab fa-google-play"></i>
+                                Play Store
+                            </a>
+                        </div>
                     </div>
-                    <p class="project-description">
-                        A comprehensive Codeforces companion app that helps competitive programmers track their progress, 
-                        practice problems, and stay updated with contests. Features include profile tracking, contest notifications, 
-                        and problem recommendations.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Kotlin</span>
-                        <span class="tech-tag">MVVM</span>
-                        <span class="tech-tag">REST API</span>
-                        <span class="tech-tag">Material Design</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/prafullKrRj/CodeForcesly" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Source Code
-                        </a>
-                        <a href="#" onclick="alert('Currently in closed testing')" class="project-link">
-                            <i class="fab fa-google-play"></i>
-                            Play Store
-                        </a>
+                </div>
+
+                <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.prafull.algorithms', '_blank')">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">AlgoAura</h3>
+                            <span class="project-status">Live</span>
+                        </div>
+                        <p class="project-description">
+                            An interactive platform for visualizing and learning algorithms with detailed explanations and 
+                            practical examples. Features intuitive animations and comprehensive learning materials to help 
+                            users master algorithmic concepts across multiple programming languages.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Custom Views</span>
+                            <span class="tech-tag">Animations</span>
+                            <span class="tech-tag">Educational</span>
+                            <span class="tech-tag">MVVM</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/prafullKrRj/AlgoAura" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.prafull.algorithms" target="_blank" class="project-link play-store">
+                                <i class="fab fa-google-play"></i>
+                                Play Store
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.prafull.algorithms', '_blank')">
-                <div class="project-content">
-                    <div class="project-header">
-                        <h3 class="project-title">AlgoAura</h3>
-                        <span class="project-status">Live</span>
-                    </div>
-                    <p class="project-description">
-                        An interactive platform for visualizing and learning algorithms with detailed explanations and 
-                        practical examples. Features intuitive animations and comprehensive learning materials to help 
-                        users master algorithmic concepts.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Kotlin</span>
-                        <span class="tech-tag">Custom Views</span>
-                        <span class="tech-tag">Animations</span>
-                        <span class="tech-tag">Educational</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/prafullKrRj/AlgoAura" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Source Code
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.prafull.algorithms" target="_blank" class="project-link">
-                            <i class="fab fa-google-play"></i>
-                            Play Store
-                        </a>
+        <!-- Other Projects Section -->
+        <div class="projects-section">
+            <h3 class="projects-section-title">🚧 Other Android Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card" onclick="window.open('https://github.com/prafullKrRj/CryptoAnalyzer', '_blank')">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">CryptoAnalyzer</h3>
+                            <span class="project-status development">Open Source</span>
+                        </div>
+                        <p class="project-description">
+                            A cryptocurrency analysis app that provides real-time coin data, detailed market information, 
+                            and comprehensive analytics. Features extensive coin listings and detailed market insights 
+                            using the Coinpaprika API.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Retrofit</span>
+                            <span class="tech-tag">Compose</span>
+                            <span class="tech-tag">Clean Architecture</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/prafullKrRj/CryptoAnalyzer" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-content">
-                    <div class="project-header">
-                        <h3 class="project-title">Roadmap Creator</h3>
-                        <span class="project-status beta">Development</span>
+                <div class="project-card" onclick="window.open('https://github.com/prafullKrRj/Object-Detection', '_blank')">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Object Detection App</h3>
+                            <span class="project-status development">Open Source</span>
+                        </div>
+                        <p class="project-description">
+                            An Android application that uses camera for real-time object detection. Features adjustable 
+                            confidence threshold, real-time detection count, and intuitive user interface for seamless 
+                            object recognition experience.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">ML Kit</span>
+                            <span class="tech-tag">Camera2 API</span>
+                            <span class="tech-tag">TensorFlow Lite</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/prafullKrRj/Object-Detection" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                        </div>
                     </div>
-                    <p class="project-description">
-                        A dynamic roadmap creation tool enabling students and professionals to visualize, plan, and 
-                        track their learning journey with customizable milestones and progress tracking. Perfect for 
-                        organized self-development.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Kotlin</span>
-                        <span class="tech-tag">Jetpack Compose</span>
-                        <span class="tech-tag">Firestore</span>
-                        <span class="tech-tag">Material Design 3</span>
+                </div>
+
+                <div class="project-card" onclick="window.open('https://github.com/prafullKrRj/Dictionary-App', '_blank')">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Dictionary App</h3>
+                            <span class="project-status development">Open Source</span>
+                        </div>
+                        <p class="project-description">
+                            A comprehensive dictionary application with offline support, word definitions, pronunciation guides, 
+                            and search history. Features clean Material Design interface and fast word lookup capabilities.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Room DB</span>
+                            <span class="tech-tag">Material Design</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/prafullKrRj/Dictionary-App" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                        </div>
                     </div>
-                    <div class="project-links">
-                        <a href="#" onclick="alert('Coming soon!')" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Source Code
-                        </a>
-                        <a href="#" onclick="alert('Currently in development')" class="project-link">
-                            <i class="fab fa-google-play"></i>
-                            Play Store
-                        </a>
+                </div>
+
+                <div class="project-card" onclick="window.open('https://github.com/prafullKrRj/TrainX', '_blank')">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">TrainX</h3>
+                            <span class="project-status development">Open Source</span>
+                        </div>
+                        <p class="project-description">
+                            A fitness tracking application that helps users monitor their workout routines, track hydration levels, 
+                            and maintain fitness goals. Features comprehensive workout logging and progress tracking.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Room Database</span>
+                            <span class="tech-tag">Koin DI</span>
+                            <span class="tech-tag">Material Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/prafullKrRj/TrainX" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="window.open('https://github.com/prafullKrRj/NotesApp-Client', '_blank')">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Notes App</h3>
+                            <span class="project-status development">Open Source</span>
+                        </div>
+                        <p class="project-description">
+                            A cloud-based notes application with user authentication, real-time synchronization, and comprehensive 
+                            note management. Features include note creation, editing, sharing, and profile management.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Retrofit</span>
+                            <span class="tech-tag">Authentication</span>
+                            <span class="tech-tag">Cloud Sync</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/prafullKrRj/NotesApp-Client" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="window.open('https://github.com/prafullKrRj/Shrimad-Bhagvad-Gita', '_blank')">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Shrimad Bhagavad Gita</h3>
+                            <span class="project-status development">Open Source</span>
+                        </div>
+                        <p class="project-description">
+                            A spiritual mobile application providing complete access to the Bhagavad Gita with multiple language 
+                            support, verse-by-verse commentary, and beautiful user interface for spiritual learning.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Jetpack Compose</span>
+                            <span class="tech-tag">Multi-language</span>
+                            <span class="tech-tag">Material Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/prafullKrRj/Shrimad-Bhagvad-Gita" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -979,7 +1153,8 @@
                     <p class="experience-description">
                         Working on developing user-focused mobile applications with modern Android technologies. 
                         Implementing clean architecture patterns and contributing to team projects with focus on 
-                        performance optimization and user experience enhancement.
+                        performance optimization and user experience enhancement. Collaborating with cross-functional 
+                        teams to deliver high-quality mobile solutions.
                     </p>
                 </div>
             </div>
@@ -1028,17 +1203,21 @@
 
             <div class="contact-card">
                 <div class="contact-icon">
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="fas fa-globe"></i>
                 </div>
-                <h3 class="contact-title">Location</h3>
-                <p class="contact-info">India</p>
+                <h3 class="contact-title">Website</h3>
+                <p class="contact-info">
+                    <a href="https://prafullkumar.com" target="_blank" class="contact-link">
+                        prafullkumar.com
+                    </a>
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Prafull Kumar. All rights reserved.</p>
+        <p>&copy; 2024 Prafull Kumar. All rights reserved. | Made with ❤️ for the Android community</p>
     </footer>
 
     <script>
