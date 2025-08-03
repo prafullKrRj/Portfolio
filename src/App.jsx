@@ -11,7 +11,7 @@ const portfolioData = {
         linkedin: "https://www.linkedin.com/in/prafull-kumar-rj/",
         gplayDeveloper: "https://play.google.com/store/apps/developer?id=Prafull+Kumar", // Updated Publisher Link
         leetcode: "https://leetcode.com/u/prafullkumar/", // Updated LeetCode username
-        resume: "./PrafullRes_260924_1.pdf"
+        resume: "./Resume.pdf"
     },
     about: "I am a passionate Android Developer specializing in Kotlin and Jetpack Compose. With a strong foundation in clean architecture (MVVM) and modern development practices, I transform complex ideas into scalable, user-centric mobile applications. I thrive on solving intricate problems and am constantly exploring the integration of AI within the mobile ecosystem to build smarter, more intuitive experiences.",
     experience: [
@@ -331,12 +331,12 @@ export default function App() {
                             {experience.map(exp => <ExperienceCard key={exp.company} exp={exp} />)}
                         </Section>
 
-                        <Section id="stats" title="Coding Stats" icon={<Zap className="text-slate-400" />}>
+                        {/* <Section id="stats" title="Coding Stats" icon={<Zap className="text-slate-400" />}>
                             <div className="space-y-6">
                                 <LeetCodeStats stats={leetcodeStats} />
                                 <GitHubStats stats={githubStats} />
                             </div>
-                        </Section>
+                        </Section> */}
 
                         <Section id="projects" title="Personal Apps & Projects" icon={<Star className="text-slate-400" />}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
