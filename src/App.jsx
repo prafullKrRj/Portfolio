@@ -322,18 +322,14 @@ export default function App() {
 
     const [mousePosition, setMousePosition] = useState({x: 0, y: 0});
     const [activeSection, setActiveSection] = useState('');
-    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        // Ensure component is fully mounted
-        setIsLoaded(true);
-        
         const handleMouseMove = (event) => {
             setMousePosition({x: event.clientX, y: event.clientY});
         };
         
         const handleScroll = () => {
-            const sections = ['experience', 'projects', 'skills'];
+            const sections = ['experience', 'stats', 'projects', 'skills'];
             const scrollPosition = window.scrollY + 200;
             
             for (const section of sections) {
@@ -357,23 +353,9 @@ export default function App() {
         };
     }, []);
 
-    // Show loading state if not ready
-    if (!isLoaded) {
-        return (
-            <div style={{
-                minHeight: '100vh',
-                backgroundColor: '#0f172a',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-            }}>
-                <div style={{ color: '#60a5fa' }}>Loading...</div>
-            </div>
-        );
-    }
-
     const navLinks = [
         {href: "#experience", label: "Experience", id: "experience"},
+        {href: "#stats", label: "Stats", id: "stats"},
         {href: "#projects", label: "Projects", id: "projects"},
         {href: "#skills", label: "Skills", id: "skills"},
     ];
@@ -423,6 +405,13 @@ export default function App() {
                     <main className={styles.mainContent}>
                         <Section id="experience" title="Experience" icon={<Briefcase/>}>
                             {experience.map(exp => <ExperienceCard key={exp.company} exp={exp}/>)}
+                        </Section>
+
+                        <Section id="stats" title="Coding Stats" icon={<Zap/>}>
+                            <div className={styles.statsContainer}>
+                                <LeetCodeStats stats={leetcodeStats}/>
+                                <GitHubStats stats={githubStats}/>
+                            </div>
                         </Section>
 
                         <Section id="projects" title="Personal Apps & Projects" icon={<Star/>}>
@@ -482,6 +471,7 @@ export default function App() {
 
                         <footer className={styles.footer}>
                             <p>Designed & Built by Prafull Kumar.</p>
+                            <p>Inspired by modern web design trends. Built with React & CSS Modules.</p>
                         </footer>
                     </main>
                 </div>
