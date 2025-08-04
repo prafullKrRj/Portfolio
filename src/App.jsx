@@ -77,14 +77,14 @@ const portfolioData = {
             title: "TrainX - Smart Workout Tracker",
             description: "An intelligent workout tracking app leveraging Room for robust offline storage and the Gemini AI API to provide users with personalized fitness recommendations and plans.",
             tech: ["Kotlin", "Jetpack Compose", "Room DB", "Gemini AI", "MVVM"],
-            link: "https://github.com/prafullKrRj/TrainX-Smart-Workout-Tracker",
+            link: "https://github.com/prafullKrRj/TrainX",
             icon: <Dumbbell size={32} className={styles.iconGreen}/>
         },
         {
             title: "Codeforcesly CF Helper",
             description: "A feature-rich companion app for Codeforces competitors. Includes user profile tracking, contest schedules, problem visualization, and friend management, all built with a modern tech stack.",
             tech: ["Kotlin", "Jetpack Compose", "Room DB", "Dagger Hilt", "Retrofit"],
-            link: "https://play.google.com/store/apps/details?id=com.prafull.codeforcesly",
+            link: "https://play.google.com/store/apps/details?id=com.prafullkumar.codeforcesly",
             icon: <Code size={32} className={styles.iconPurple}/>
         }
     ],
@@ -472,7 +472,6 @@ export default function App() {
 
                         <footer className={styles.footer}>
                             <p>Designed & Built by Prafull Kumar.</p>
-                            <p>Inspired by modern web design trends. Built with React & CSS Modules.</p>
                         </footer>
                     </main>
                 </div>
