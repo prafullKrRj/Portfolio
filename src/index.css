@@ -25,11 +25,6 @@ body {
   width: 100%;
 }
 
-/* Remove loading screen once React loads */
-.loading {
-  display: none !important;
-}
-
 /* Global link styles */
 a {
   color: inherit;

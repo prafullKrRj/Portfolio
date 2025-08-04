@@ -40,7 +40,7 @@ const portfolioData = {
         {
             role: "Android Development Intern",
             company: "Warewe Consultancy Pvt. Ltd.",
-            period: "May 2024 – Present",
+            period: "February 2025 – Present",
             description: [
                 "Led the end-to-end development of three distinct Android applications, from concept and design to deployment on the Google Play Store.",
                 "Engineered utility apps like a TDEE Calculator and Ring Sizer using Kotlin and Jetpack Compose, focusing on precise calculations and intuitive UI.",
@@ -322,8 +322,12 @@ export default function App() {
 
     const [mousePosition, setMousePosition] = useState({x: 0, y: 0});
     const [activeSection, setActiveSection] = useState('');
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
+        // Ensure component is fully mounted
+        setIsLoaded(true);
+        
         const handleMouseMove = (event) => {
             setMousePosition({x: event.clientX, y: event.clientY});
         };
@@ -353,9 +357,23 @@ export default function App() {
         };
     }, []);
 
+    // Show loading state if not ready
+    if (!isLoaded) {
+        return (
+            <div style={{
+                minHeight: '100vh',
+                backgroundColor: '#0f172a',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                <div style={{ color: '#60a5fa' }}>Loading...</div>
+            </div>
+        );
+    }
+
     const navLinks = [
         {href: "#experience", label: "Experience", id: "experience"},
-        // {href: "#stats", label: "Stats", id: "stats"},
         {href: "#projects", label: "Projects", id: "projects"},
         {href: "#skills", label: "Skills", id: "skills"},
     ];
@@ -399,8 +417,6 @@ export default function App() {
                                className={styles.socialLink}><Code size={24}/></a>
                             <a href={`mailto:${email}`} aria-label="Email" className={styles.socialLink}><Mail
                                 size={24}/></a>
-                            {/* <a href={links.resume} target="_blank" rel="noopener noreferrer" aria-label="Resume"
-                               className={styles.socialLink}><FileText size={24}/></a> */}
                         </div>
                     </header>
 
@@ -408,12 +424,6 @@ export default function App() {
                         <Section id="experience" title="Experience" icon={<Briefcase/>}>
                             {experience.map(exp => <ExperienceCard key={exp.company} exp={exp}/>)}
                         </Section>
-{/* <Section id="stats" title="Coding Stats" icon={<Zap/>}>
-                            <div className={styles.statsContainer}>
-                                <LeetCodeStats stats={leetcodeStats}/>
-                                <GitHubStats stats={githubStats}/>
-                            </div>
-</Section> */}
 
                         <Section id="projects" title="Personal Apps & Projects" icon={<Star/>}>
                             <div className={styles.projectsGrid}>
