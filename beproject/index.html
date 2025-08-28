@@ -1,589 +1,381 @@
 <!DOCTYPE html>
-
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CueSight: Assistive Technology for Social Communication</title>
+    <title>CueSight: Interactive Project Report</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Assistive Tech Calm -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative journey, guiding the user from the core problem to the innovative solution. It uses thematic sections ('The Challenge', 'How It Works', 'Architecture', 'Analytics') instead of mirroring the report's linear structure. This approach allows users to quickly grasp the project's value proposition. The centerpiece is an interactive workflow diagram, which is more engaging than a static image and encourages user exploration. A sticky navigation bar facilitates easy movement between these logical sections, making the information highly accessible. -->
+    <!-- Visualization & Content Choices: Report Info: 4-stage workflow -> Goal: Explain the process interactively -> Viz/Method: HTML/CSS diagram with JS-powered content switching -> Interaction: Clicking a stage updates a detail panel -> Justification: More engaging and memorable than reading a list. Report Info: Analytics data (daily/weekly emotions) -> Goal: Showcase the app's data-driven insights -> Viz/Method: Chart.js Donut and Line charts -> Interaction: Hover tooltips and buttons to simulate data changes -> Justification: Demonstrates the dynamic and personalized nature of the analytics dashboard, a core feature. Library/Method: Chart.js (Canvas). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            line-height: 1.6;
+            background-color: #f8fafc; /* slate-50 */
         }
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            height: 280px;
-        }
-        @media (min-width: 640px) {
-            .chart-container {
-                height: 320px;
             max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
         }
-        }
-        @media (min-width: 1024px) {
+        @media (min-width: 768px) {
             .chart-container {
-                height: 380px;
+                height: 350px;
             }
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .nav-link {
+            transition: color 0.3s ease;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
+        .workflow-item.active {
+            border-color: #3b82f6; /* blue-500 */
+            background-color: #eff6ff; /* blue-50 */
         }
-        .process-step {
+        .workflow-item {
             transition: all 0.3s ease;
-        }
-        .process-step:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .feature-card {
-            transition: all 0.3s ease;
-            border: 1px solid #e5e7eb;
-        }
-        .feature-card:hover {
-            border-color: #3b82f6;
-            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
-        }
-        .tech-card {
-            border-left: 4px solid #3b82f6;
-        }
-        .arrow-connector {
-            color: #6b7280;
-            font-size: 1.5rem;
-        }
-        @media (max-width: 767px) {
-            .arrow-connector {
-                transform: rotate(90deg);
-                margin: 1rem 0;
-            }
         }
     </style>
 </head>
-<body class="text-gray-800 antialiased">
+<body class="text-slate-700">
 
-<main class="min-h-screen">
-    <!-- Header Section -->
-    <header class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-4xl mx-auto">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-text mb-6">
-                    CueSight
-                </h1>
-                <p class="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium mb-4">
-                    Intelligent Assistive Technology for Social Communication
-                </p>
-                <p class="text-base md:text-lg text-gray-500 max-w-2xl mx-auto">
-                    Empowering individuals with autism spectrum disorder and social anxiety through real-time social cue recognition and personalized feedback systems.
-                </p>
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-slate-800">
+                CueSight
             </div>
-        </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#challenge" class="nav-link text-slate-600 hover:text-blue-600 font-medium">The Challenge</a>
+                <a href="#workflow" class="nav-link text-slate-600 hover:text-blue-600 font-medium">How It Works</a>
+                <a href="#architecture" class="nav-link text-slate-600 hover:text-blue-600 font-medium">Architecture</a>
+                <a href="#analytics" class="nav-link text-slate-600 hover:text-blue-600 font-medium">Analytics</a>
+                <a href="#privacy" class="nav-link text-slate-600 hover:text-blue-600 font-medium">Privacy</a>
+            </div>
+        </nav>
     </header>
 
-    <!-- Problem Statement Section -->
-    <section id="problem" class="py-16 md:py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Understanding Social Communication Challenges
-                    </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        Non-verbal communication constitutes a significant portion of human interaction, yet remains challenging for many individuals to interpret accurately.
-                    </p>
-                </div>
+    <main class="container mx-auto px-6 py-12 md:py-20">
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                    <div class="lg:col-span-2">
-                        <div class="bg-blue-50 rounded-2xl p-8 md:p-10">
-                            <h3 class="text-xl font-semibold text-gray-900 mb-6">Key Statistics</h3>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div class="text-center">
-                                    <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2">70%+</div>
-                                    <div class="text-sm text-gray-600">of communication is non-verbal</div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2">1 in 36</div>
-                                    <div class="text-sm text-gray-600">children diagnosed with ASD</div>
-                                </div>
-                            </div>
+        <section id="hero" class="text-center mb-20 md:mb-32">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-4">Your Personal Social Interpreter</h1>
+            <p class="max-w-3xl mx-auto text-lg md:text-xl text-slate-600">
+                An intelligent assistive technology that transforms confusing social interactions into understandable insights, empowering individuals with social anxiety or ASD to navigate their world with greater confidence.
+            </p>
+        </section>
+
+        <section id="challenge" class="mb-20 md:mb-32">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-200">
+                    <h2 class="text-3xl font-bold text-red-600 mb-4">The Challenge</h2>
+                    <p class="text-lg mb-6">Navigating a world of unspoken cues is a significant hurdle for many. Non-verbal communication, which makes up over <strong class="font-bold">70% of interaction</strong>, can be overwhelming, leading to misunderstanding and anxiety.</p>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-4xl">🧩</span>
+                        <div>
+                            <h3 class="font-semibold text-slate-800">Key Impact Areas</h3>
+                            <ul class="list-disc list-inside text-slate-600 mt-2">
+                                <li>Social interaction difficulties</li>
+                                <li>Communication barriers</li>
+                                <li>Educational and employment limitations</li>
+                            </ul>
                         </div>
-            </div>
-                    <div>
-                        <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
-                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Impact Areas</h4>
-                            <ul class="space-y-3 text-gray-600">
-                                <li class="flex items-center">
-                                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                                    Social interaction difficulties
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                                    Communication barriers
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                                    Educational challenges
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                                    Employment limitations
-                                </li>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-200">
+                    <h2 class="text-3xl font-bold text-green-600 mb-4">The Solution</h2>
+                    <p class="text-lg mb-6">CueSight provides a discreet, real-time solution. By pairing smart glasses with a mobile app, it detects emotions and delivers private feedback, turning subjective social experiences into objective, actionable data.</p>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-4xl">💡</span>
+                        <div>
+                            <h3 class="font-semibold text-slate-800">Core Benefits</h3>
+                            <ul class="list-disc list-inside text-slate-600 mt-2">
+                                <li>Real-time social cue recognition</li>
+                                <li>Private, on-device data processing</li>
+                                <li>Personalized learning and insights</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section id="workflow" class="mb-20 md:mb-32">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-800">How It Works: An Interactive Flow</h2>
+                <p class="max-w-2xl mx-auto mt-4 text-lg text-slate-600">Click on each stage to understand how CueSight transforms visual input into actionable social insights.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <div id="workflow-steps" class="flex flex-col space-y-4">
+                    <!-- Workflow items will be populated by JS -->
+                </div>
+                <div id="workflow-details" class="bg-white p-8 rounded-xl shadow-md border border-slate-200 min-h-[300px]">
+                    <!-- Details will be populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="mb-20 md:mb-32">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-800">System Architecture</h2>
+                <p class="max-w-2xl mx-auto mt-4 text-lg text-slate-600">A robust combination of minimalist hardware and powerful software, designed for reliability, privacy, and scalability.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-200">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Hardware Components</h3>
+                     <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-blue-500 font-bold text-xl mt-1">📷</span>
+                            <div><strong>ESP32-CAM Module:</strong> A low-power microcontroller with an integrated camera and Wi-Fi, capturing the user's perspective.</div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                             <span class="text-blue-500 font-bold text-xl mt-1">🔋</span>
+                            <div><strong>Power Management:</strong> A compact battery system ensures power efficiency for extended, all-day use.</div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                             <span class="text-blue-500 font-bold text-xl mt-1">👓</span>
+                            <div><strong>Ergonomic Eyewear Frame:</strong> A lightweight, durable frame designed for comfortable all-day wear.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-200">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Software Architecture</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold text-xl mt-1">🧠</span>
+                            <div><strong>MediaPipe Framework:</strong> Google's ML framework for real-time facial landmark detection and emotion classification on the mobile device.</div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                             <span class="text-green-500 font-bold text-xl mt-1">📱</span>
+                            <div><strong>Mobile Application:</strong> The cross-platform brain of the system for data processing, user interface, and personalized feedback management.</div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                             <span class="text-green-500 font-bold text-xl mt-1">🔒</span>
+                            <div><strong>Privacy-First Database:</strong> All data is stored locally on the user's device with advanced encryption, ensuring complete user privacy and data security.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="analytics" class="mb-20 md:mb-32">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-800">The Power of Data: Personal Analytics</h2>
+                <p class="max-w-2xl mx-auto mt-4 text-lg text-slate-600">Transform raw interaction data into meaningful insights for personal development and social skill enhancement.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-200">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2">Daily Emotion Distribution</h3>
+                    <p class="text-slate-600 mb-4">A real-time analysis of emotional contexts encountered throughout the day.</p>
+                    <div class="chart-container">
+                        <canvas id="dailyDonutChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-200">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2">Weekly Interaction Patterns</h3>
+                    <p class="text-slate-600 mb-4">Analyze social interaction complexity and confidence levels over time.</p>
+                    <div class="chart-container">
+                        <canvas id="weeklyLineChart"></canvas>
+                    </div>
+                    <div class="text-center mt-4 space-x-2">
+                        <button id="updateChartBtnWeek1" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">This Week</button>
+                        <button id="updateChartBtnWeek2" class="bg-slate-200 text-slate-700 px-4 py-2 rounded-lg hover:bg-slate-300 transition">Last Week</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="privacy" class="text-center bg-blue-50 border-2 border-blue-200 border-dashed p-8 rounded-xl">
+            <h2 class="text-3xl font-bold text-slate-800">Privacy-First by Design</h2>
+            <p class="max-w-3xl mx-auto mt-4 text-lg text-slate-600">
+            Your privacy is paramount. All video processing happens directly on your phone. No facial data or video is ever stored or sent to the cloud. The system only logs anonymous emotional events, giving you full control over your personal insights.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 CueSight Project. An interactive report created to explore assistive technology.</p>
         </div>
-    </section>
+    </footer>
 
-    <!-- Solution Process Section -->
-    <section id="process" class="py-16 md:py-20 bg-gray-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        System Architecture & Workflow
-                    </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        A comprehensive four-stage process that transforms visual input into actionable social insights.
-                    </p>
-                </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const workflowData = [
+                {
+                    id: 'capture',
+                    title: '1. Data Capture',
+                    icon: '📷',
+                    description: 'The ESP32-CAM module, integrated into the eyewear, captures real-time visual data from the user\'s perspective. This low-resolution video stream acts as the eyes of the system, providing a continuous feed of the social environment without storing any images.'
+                },
+                {
+                    id: 'processing',
+                    title: '2. ML Processing',
+                    icon: '🧠',
+                    description: 'The video stream is sent securely to the user\'s smartphone. Using Google\'s MediaPipe framework, the mobile app processes the stream in real-time to perform facial landmark detection and emotion recognition. All computation happens locally on the device.'
+                },
+                {
+                    id: 'feedback',
+                    title: '3. Feedback Delivery',
+                    icon: '🔔',
+                    description: 'Based on the detected emotion, the app provides discreet, real-time social cue interpretation. This feedback can be a customized haptic (vibration) pattern, a subtle audio cue, or a visual notification on a smartwatch, ensuring privacy and subtlety.'
+                },
+                {
+                    id: 'insights',
+                    title: '4. Analytics & Insights',
+                    icon: '📊',
+                    description: 'Interaction data is anonymously logged and analyzed over time to provide personalized insights and progress tracking. The app visualizes this data, helping users identify patterns and reflect on social encounters to build confidence and understanding.'
+                }
+            ];
 
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8">
-                    <div class="process-step bg-white rounded-2xl shadow-sm p-6 md:p-8 w-full max-w-xs text-center">
-                        <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-2xl flex items-center justify-center">
-                            <span class="text-2xl">📷</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Data Capture</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed">
-                            ESP32-CAM module integrated into eyewear captures real-time visual data from user's perspective.
-                        </p>
-            </div>
+            const workflowStepsContainer = document.getElementById('workflow-steps');
+            const workflowDetailsContainer = document.getElementById('workflow-details');
 
-                    <div class="arrow-connector">→</div>
-
-                    <div class="process-step bg-white rounded-2xl shadow-sm p-6 md:p-8 w-full max-w-xs text-center">
-                        <div class="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-2xl flex items-center justify-center">
-                            <span class="text-2xl">🧠</span>
-            </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">ML Processing</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed">
-                            MediaPipe framework processes video stream for facial expression and emotion recognition.
-                        </p>
-            </div>
-
-                    <div class="arrow-connector">→</div>
-
-                    <div class="process-step bg-white rounded-2xl shadow-sm p-6 md:p-8 w-full max-w-xs text-center">
-                        <div class="w-16 h-16 mx-auto mb-4 bg-yellow-100 rounded-2xl flex items-center justify-center">
-                            <span class="text-2xl">📳</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Feedback Delivery</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed">
-                            Discrete haptic, audio, or visual notifications provide real-time social cue interpretation.
-                        </p>
+            function renderWorkflow() {
+                workflowStepsContainer.innerHTML = workflowData.map(item => `
+                    <div id="workflow-item-${item.id}" class="workflow-item flex items-center space-x-4 p-4 border-2 border-slate-200 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-blue-50">
+                        <span class="text-3xl">${item.icon}</span>
+                        <span class="text-xl font-semibold text-slate-800">${item.title}</span>
                     </div>
-
-                    <div class="arrow-connector">→</div>
-
-                    <div class="process-step bg-white rounded-2xl shadow-sm p-6 md:p-8 w-full max-w-xs text-center">
-                        <div class="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-2xl flex items-center justify-center">
-                            <span class="text-2xl">📊</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Analytics & Insights</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed">
-                            Interaction data is analyzed to provide personalized insights and progress tracking.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technology Stack Section -->
-    <section id="technology" class="py-16 md:py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Technical Implementation
-                    </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        A robust combination of hardware and software components designed for reliability, privacy, and scalability.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                    <!-- Hardware Components -->
-                    <div class="feature-card bg-white rounded-2xl p-8 md:p-10">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-xl">⚙️</span>
-                            </div>
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-900">Hardware Components</h3>
-                        </div>
-                        <div class="space-y-6">
-                            <div class="tech-card bg-gray-50 rounded-xl p-6">
-                                <h4 class="font-semibold text-gray-900 mb-2 flex items-center">
-                                    <span class="text-lg mr-3">📷</span>
-                                    ESP32-CAM Module
-                                </h4>
-                                <p class="text-sm text-gray-600">
-                                    Low-power microcontroller with integrated camera and Wi-Fi capabilities for seamless data transmission.
-                                </p>
-                            </div>
-                            <div class="tech-card bg-gray-50 rounded-xl p-6">
-                                <h4 class="font-semibold text-gray-900 mb-2 flex items-center">
-                                    <span class="text-lg mr-3">🔋</span>
-                                    Power Management System
-                                </h4>
-                                <p class="text-sm text-gray-600">
-                                    Compact lithium-ion battery with optimized power consumption for extended usage periods.
-                                </p>
-                            </div>
-                            <div class="tech-card bg-gray-50 rounded-xl p-6">
-                                <h4 class="font-semibold text-gray-900 mb-2 flex items-center">
-                                    <span class="text-lg mr-3">👓</span>
-                                    Ergonomic Eyewear Frame
-                                </h4>
-                                <p class="text-sm text-gray-600">
-                                    Lightweight, durable frame designed for comfortable all-day wear with integrated component housing.
-                                </p>
-            </div>
-                        </div>
-                    </div>
-
-                    <!-- Software Components -->
-                    <div class="feature-card bg-white rounded-2xl p-8 md:p-10">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-xl">💻</span>
-                            </div>
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-900">Software Architecture</h3>
-                        </div>
-                        <div class="space-y-6">
-                            <div class="tech-card bg-gray-50 rounded-xl p-6">
-                                <h4 class="font-semibold text-gray-900 mb-2 flex items-center">
-                                    <span class="text-lg mr-3">🧠</span>
-                                    MediaPipe Framework
-                                </h4>
-                                <p class="text-sm text-gray-600">
-                                    Google's machine learning framework for real-time facial landmark detection and emotion classification.
-                                </p>
-                            </div>
-                            <div class="tech-card bg-gray-50 rounded-xl p-6">
-                                <h4 class="font-semibold text-gray-900 mb-2 flex items-center">
-                                    <span class="text-lg mr-3">📱</span>
-                                    Mobile Application
-                                </h4>
-                                <p class="text-sm text-gray-600">
-                                    Cross-platform application for data processing, user interface, and personalized feedback management.
-                                </p>
-                            </div>
-                            <div class="tech-card bg-gray-50 rounded-xl p-6">
-                                <h4 class="font-semibold text-gray-900 mb-2 flex items-center">
-                                    <span class="text-lg mr-3">🔒</span>
-                                    Privacy-First Database
-                                </h4>
-                                <p class="text-sm text-gray-600">
-                                    Local data storage with advanced encryption ensuring complete user privacy and data security.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Data Analytics Section -->
-    <section id="analytics" class="py-16 md:py-20 bg-gray-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Comprehensive Data Analytics
-                    </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        Transform raw interaction data into meaningful insights for personal development and social skill enhancement.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
-                    <div class="feature-card bg-white rounded-2xl p-8 md:p-10">
-                        <div class="text-center mb-8">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Daily Emotion Distribution</h3>
-                            <p class="text-gray-600">Real-time analysis of emotional contexts encountered throughout the day</p>
-                        </div>
-                <div class="chart-container">
-                    <canvas id="dailyEmotionChart"></canvas>
-                </div>
-                        <div class="mt-6 grid grid-cols-2 gap-4 text-center">
-                            <div class="bg-gray-50 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-green-600">68%</div>
-                                <div class="text-xs text-gray-500">Positive Interactions</div>
-                            </div>
-                            <div class="bg-gray-50 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-blue-600">24</div>
-                                <div class="text-xs text-gray-500">Total Interactions</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="feature-card bg-white rounded-2xl p-8 md:p-10">
-                        <div class="text-center mb-8">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Weekly Interaction Patterns</h3>
-                            <p class="text-gray-600">Longitudinal analysis of social interaction complexity and stress levels</p>
-            </div>
-                <div class="chart-container">
-                    <canvas id="weeklyTrendChart"></canvas>
-                </div>
-                        <div class="mt-6 grid grid-cols-2 gap-4 text-center">
-                            <div class="bg-gray-50 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-yellow-600">12%</div>
-                                <div class="text-xs text-gray-500">Stress Reduction</div>
-                            </div>
-                            <div class="bg-gray-50 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-purple-600">3.2</div>
-                                <div class="text-xs text-gray-500">Avg. Confidence Score</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact & Benefits Section -->
-    <section id="impact" class="py-16 md:py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-5xl mx-auto">
-                <div class="gradient-bg rounded-3xl p-8 md:p-12 text-center text-white">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
-                        Empowering Social Confidence Through Technology
-                    </h2>
-                    <p class="text-lg md:text-xl mb-8 text-blue-100 max-w-4xl mx-auto">
-                        CueSight represents a paradigm shift in assistive technology, transforming subjective social experiences into objective, actionable data. Our mission is to empower individuals with the tools and insights needed to navigate social environments with greater confidence and understanding.
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12">
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold mb-2">Real-time</div>
-                            <div class="text-blue-100">Social cue recognition</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold mb-2">Private</div>
-                            <div class="text-blue-100">Data processing</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold mb-2">Personalized</div>
-                            <div class="text-blue-100">Learning experience</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer class="bg-gray-50 py-12">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <p class="text-gray-500 mb-2">© 2025 CueSight Project - Prafull Kumar</p>
-            <p class="text-sm text-gray-400">Advanced assistive technology for social communication enhancement</p>
-        </div>
-    </div>
-</footer>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const CONFIG = {
-            colors: {
-                primary: '#3b82f6',
-                secondary: '#1e40af',
-                success: '#10b981',
-                warning: '#f59e0b',
-                danger: '#ef4444',
-                info: '#06b6d4',
-                gray: '#6b7280'
-            },
-            chart: {
-                fontFamily: 'Inter, sans-serif',
-                fontSize: 12,
-                fontColor: '#374151',
-                gridColor: '#f3f4f6'
+                `).join('');
             }
-        };
 
-        function createResponsiveChart(ctx, config) {
-            return new Chart(ctx, {
-                ...config,
+            function updateDetails(id) {
+                const item = workflowData.find(d => d.id === id);
+                if (item) {
+                    workflowDetailsContainer.innerHTML = `
+                        <div class="flex items-start space-x-4">
+                            <span class="text-4xl">${item.icon}</span>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-2">${item.title}</h3>
+                                <p class="text-lg text-slate-600">${item.description}</p>
+                            </div>
+                        </div>
+                    `;
+                    document.querySelectorAll('.workflow-item').forEach(el => el.classList.remove('active'));
+                    document.getElementById(`workflow-item-${id}`).classList.add('active');
+                }
+            }
+
+            renderWorkflow();
+            updateDetails('capture'); 
+
+            workflowStepsContainer.addEventListener('click', (e) => {
+                const targetItem = e.target.closest('.workflow-item');
+                if (targetItem) {
+                    const id = targetItem.id.replace('workflow-item-', '');
+                    updateDetails(id);
+                }
+            });
+
+            const donutCtx = document.getElementById('dailyDonutChart').getContext('2d');
+            const dailyDonutChart = new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Positive', 'Neutral', 'Curious', 'Concerned'],
+                    datasets: [{
+                        label: 'Emotion Distribution',
+                        data: [45, 35, 15, 5],
+                        backgroundColor: ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444'],
+                        borderColor: '#f8fafc',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
                 options: {
-                    ...config.options,
                     responsive: true,
                     maintainAspectRatio: false,
+                    cutout: '70%',
                     plugins: {
-                        ...config.options.plugins,
                         legend: {
-                            ...config.options.plugins?.legend,
+                            position: 'bottom',
                             labels: {
-                                ...config.options.plugins?.legend?.labels,
-                                color: CONFIG.chart.fontColor,
-                                font: {
-                                    family: CONFIG.chart.fontFamily,
-                                    size: CONFIG.chart.fontSize
-            }
-                }
-            }
-        }
-            }
-            });
-        }
-
-        // Daily Emotion Chart
-        const dailyEmotionCtx = document.getElementById('dailyEmotionChart').getContext('2d');
-        createResponsiveChart(dailyEmotionCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Positive', 'Neutral', 'Curious', 'Concerned'],
-                datasets: [{
-                    label: 'Emotion Distribution',
-                    data: [42, 35, 15, 8],
-                    backgroundColor: [
-                        CONFIG.colors.success,
-                        CONFIG.colors.primary,
-                        CONFIG.colors.warning,
-                        CONFIG.colors.danger
-                    ],
-                    borderColor: '#ffffff',
-                    borderWidth: 3,
-                    hoverOffset: 8
-                }]
-            },
-            options: {
-                cutout: '65%',
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            usePointStyle: true,
-                            pointStyle: 'circle'
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        titleColor: '#ffffff',
-                        bodyColor: '#ffffff',
-                        borderColor: CONFIG.colors.primary,
-                        borderWidth: 1,
-                        cornerRadius: 8,
-                        callbacks: {
-                            label: function(context) {
-                                return context.label + ': ' + context.parsed + '%';
+                                padding: 20,
+                                font: { size: 14 }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}%`;
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
 
-        // Weekly Trend Chart
-        const weeklyTrendCtx = document.getElementById('weeklyTrendChart').getContext('2d');
-        createResponsiveChart(weeklyTrendCtx, {
-            type: 'line',
-            data: {
+            const lineCtx = document.getElementById('weeklyLineChart').getContext('2d');
+            const weeklyData1 = {
                 labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                 datasets: [{
-                    label: 'Social Confidence Score',
+                    label: 'Confidence Level',
                     data: [2.8, 3.1, 3.5, 3.2, 2.9, 3.8, 4.1],
+                    borderColor: '#3b82f6',
                     backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    borderColor: CONFIG.colors.primary,
-                    pointBackgroundColor: CONFIG.colors.primary,
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 2,
-                    pointRadius: 6,
-                    pointHoverRadius: 8,
-                    borderWidth: 3,
+                    fill: true,
                     tension: 0.4,
-                    fill: true
+                    pointBackgroundColor: '#3b82f6',
+                    pointRadius: 5
                 }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 5,
-                        grid: {
-                            color: CONFIG.chart.gridColor,
-                            lineWidth: 1
-                        },
-                        ticks: {
-                            color: CONFIG.chart.fontColor,
-                            font: {
-                                family: CONFIG.chart.fontFamily,
-                                size: CONFIG.chart.fontSize
-                            },
-                            stepSize: 1
-                        },
-                        title: {
-                            display: true,
-                            text: 'Confidence Level',
-                            color: CONFIG.chart.fontColor,
-                            font: {
-                                family: CONFIG.chart.fontFamily,
-                                size: CONFIG.chart.fontSize,
-                                weight: 'bold'
-                            }
+            };
+            const weeklyData2 = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Confidence Level',
+                    data: [3.2, 3.0, 2.7, 3.1, 3.3, 3.5, 3.4],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#10b981',
+                    pointRadius: 5
+                }]
+            };
+            
+            const weeklyLineChart = new Chart(lineCtx, {
+                type: 'line',
+                data: weeklyData1,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Confidence Level' }
                         }
                     },
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            color: CONFIG.chart.fontColor,
-                            font: {
-                                family: CONFIG.chart.fontFamily,
-                                size: CONFIG.chart.fontSize
-                            }
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
                         }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
                     },
-                    tooltip: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        titleColor: '#ffffff',
-                        bodyColor: '#ffffff',
-                        borderColor: CONFIG.colors.primary,
-                        borderWidth: 1,
-                        cornerRadius: 8,
-                        callbacks: {
-                            label: function(context) {
-                                return 'Confidence: ' + context.parsed.y + '/5';
-                            }
-                        }
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
                     }
                 }
-            }
+            });
+
+            document.getElementById('updateChartBtnWeek1').addEventListener('click', () => {
+                weeklyLineChart.data = weeklyData1;
+                weeklyLineChart.update();
+            });
+
+            document.getElementById('updateChartBtnWeek2').addEventListener('click', () => {
+                weeklyLineChart.data = weeklyData2;
+                weeklyLineChart.update();
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
