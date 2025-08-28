@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CueSight: A Visual Guide</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Chosen Palette: Brilliant Blues -->
+  <!-- Application Structure Plan: The infographic is structured as a top-down narrative, guiding the user from the high-level "Why" to the detailed "How." It starts with the core problem and solution, flows into the central 4-stage process, dives into the key "smart" logic (person selection), showcases the user-facing analytics, details the technical configurations, and concludes with the foundational commitment to privacy. This linear, story-driven approach is ideal for an infographic, making a complex technical project understandable at a glance. -->
+  <!-- Visualization & Content Choices: Blueprint Section: System Flow -> Goal: Organize -> Viz/Method: HTML/CSS Flowchart -> Justification: Clearly visualizes the core process without complex interaction, perfect for an infographic. Blueprint Section: Primary Person Selection -> Goal: Inform -> Viz/Method: Styled HTML diagram -> Justification: A simple visual is more effective than text at explaining the size+center heuristic. Blueprint Section: Analytics & UI -> Goal: Compare/Change -> Viz/Method: Chart.js Donut & Line Charts -> Justification: Directly visualizes the end-user benefit and data output. Library: Chart.js (Canvas). Blueprint Section: Performance Budget -> Goal: Compare -> Viz/Method: HTML/CSS Comparison Cards -> Justification: Presents the technical trade-offs in a clear, comparable format. -->
+  <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F0F4F8;
+    }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 300px;
+      max-height: 350px;
+    }
+    @media (min-width: 768px) {
+      .chart-container {
+        height: 320px;
+      }
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #0052D4, #4364F7, #6FB1FC);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .flow-arrow {
+      color: #90A4AE;
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+<div class="container mx-auto px-4 py-12 md:py-20 max-w-5xl">
+
+  <header class="text-center mb-16 md:mb-24">
+    <h1 class="text-4xl md:text-6xl font-extrabold gradient-text mb-4">CueSight</h1>
+    <p class="text-xl md:text-2xl text-gray-600 font-medium">A Visual Blueprint for the Personal Social Interpreter</p>
+  </header>
+
+  <section id="intro" class="mb-16 md:mb-24">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-2xl font-bold text-red-600 mb-3">The Problem</h2>
+        <p class="text-lg text-gray-700">Navigating a world of unspoken social cues is a major challenge for individuals with ASD or social anxiety, leading to misunderstanding and stress.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-2xl font-bold text-blue-600 mb-3">The Solution</h2>
+        <p class="text-lg text-gray-700">A discreet system using smart glasses and a phone to provide real-time emotion detection and long-term behavioral insights, all processed privately on-device.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="workflow" class="mb-16 md:mb-24">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">The Core Process Loop</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center items-start">
+      <div class="flex flex-col items-center">
+        <div class="bg-white p-6 rounded-2xl shadow-lg w-full">
+          <div class="text-4xl mb-3">📷</div>
+          <h3 class="text-xl font-bold text-blue-800">1. Capture</h3>
+          <p class="text-gray-600 mt-2">ESP32-CAM on glasses streams low-res video to the user's phone.</p>
+        </div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="hidden lg:block text-4xl mt-16 flow-arrow">→</div>
+        <div class="lg:hidden sm:hidden text-4xl my-4 flow-arrow">↓</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="bg-white p-6 rounded-2xl shadow-lg w-full">
+          <div class="text-4xl mb-3">🧠</div>
+          <h3 class="text-xl font-bold text-blue-800">2. Process</h3>
+          <p class="text-gray-600 mt-2">The phone uses MediaPipe for on-device face & emotion detection.</p>
+        </div>
+      </div>
+      <div class="hidden sm:block lg:hidden col-span-2 text-4xl my-4 text-center flow-arrow">↓</div>
+      <div class="flex flex-col items-center">
+        <div class="hidden lg:block text-4xl mt-16 flow-arrow">→</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="bg-white p-6 rounded-2xl shadow-lg w-full">
+          <div class="text-4xl mb-3">🔔</div>
+          <h3 class="text-xl font-bold text-blue-800">3. Feedback</h3>
+          <p class="text-gray-600 mt-2">A subtle, private haptic cue is sent to the user based on the detected emotion.</p>
+        </div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="hidden lg:block text-4xl mt-16 flow-arrow">→</div>
+        <div class="lg:hidden sm:hidden text-4xl my-4 flow-arrow">↓</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="bg-white p-6 rounded-2xl shadow-lg w-full">
+          <div class="text-4xl mb-3">📊</div>
+          <h3 class="text-xl font-bold text-blue-800">4. Log & Analyze</h3>
+          <p class="text-gray-600 mt-2">Interaction summaries are logged locally for personal analytics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="logic" class="mb-16 md:mb-24">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">How It Chooses Who to Focus On</h2>
+    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Primary Person Selection</h3>
+          <p class="text-lg text-gray-700 mb-4">In a scene with multiple people, CueSight must intelligently focus on the person the user is likely interacting with. It does this without facial recognition, using a simple but effective scoring system.</p>
+          <div class="space-y-3 text-lg">
+            <p><strong class="text-blue-600">60% Weight:</strong> Largest face size (proximity).</p>
+            <p><strong class="text-blue-600">40% Weight:</strong> Closest to the center of view.</p>
+          </div>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 aspect-video flex items-center justify-center relative">
+          <div class="absolute border-2 border-dashed border-cyan-400 rounded" style="width: 60%; height: 70%; top: 15%; left: 20%;">
+            <span class="absolute -top-6 left-0 text-cyan-400 text-sm font-mono">Primary Subject</span>
+          </div>
+          <div class="absolute border border-gray-500 rounded" style="width: 25%; height: 30%; top: 10%; left: 5%;"></div>
+          <div class="absolute border border-gray-500 rounded" style="width: 30%; height: 35%; top: 55%; left: 65%;"></div>
+          <span class="text-white font-mono text-center">Camera View</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="analytics" class="mb-16 md:mb-24">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">From Data to Personal Insights</h2>
+    <p class="text-xl text-center text-gray-600 max-w-3xl mx-auto -mt-6 mb-12">The app transforms logged interaction sessions into easy-to-understand visuals, helping users identify patterns over time.</p>
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+        <h3 class="text-2xl font-bold text-center text-gray-800 mb-4">Daily Emotion Distribution</h3>
+        <div class="chart-container">
+          <canvas id="dailyDonutChart"></canvas>
+        </div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+        <h3 class="text-2xl font-bold text-center text-gray-800 mb-4">Weekly Confidence Trend</h3>
+        <div class="chart-container">
+          <canvas id="weeklyLineChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="specs" class="mb-16 md:mb-24">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Performance & Power Budget</h2>
+    <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-green-300 text-center">
+        <h3 class="text-xl font-bold text-green-700">Battery Saver</h3>
+        <p class="text-3xl font-bold my-3">320x240 @ 10 FPS</p>
+        <p class="text-gray-600">~5-8% battery drain/hour. Ideal for all-day, background use.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-blue-300 text-center">
+        <h3 class="text-xl font-bold text-blue-700">Balanced (Default)</h3>
+        <p class="text-3xl font-bold my-3">320x240 @ 15 FPS</p>
+        <p class="text-gray-600">~10-15% battery drain/hour. A good compromise for daily use.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-purple-300 text-center">
+        <h3 class="text-xl font-bold text-purple-700">High Accuracy</h3>
+        <p class="text-3xl font-bold my-3">640x480 @ 20 FPS</p>
+        <p class="text-gray-600">~20%+ battery drain/hour. Best for short, on-demand sessions.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+    <div class="text-5xl mb-4">🛡️</div>
+    <h2 class="text-3xl font-bold text-gray-800">Privacy is Not an Option. It's the Foundation.</h2>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4">All processing is 100% on-device. No images, video, or personal data ever leave the user's phone. The system logs only anonymized summaries, ensuring complete user control and privacy.</p>
+  </footer>
+
+</div>
+
+<script>
+  function wrapLabels(label, maxWidth) {
+    const words = label.split(' ');
+    let lines = [];
+    let currentLine = '';
+    words.forEach(word => {
+      const testLine = currentLine.length > 0 ? `${currentLine} ${word}` : word;
+      if (testLine.length > maxWidth) {
+        lines.push(currentLine);
+        currentLine = word;
+      } else {
+        currentLine = testLine;
+      }
+    });
+    lines.push(currentLine);
+    return lines;
+  }
+
+  const tooltipTitleCallback = function(tooltipItems) {
+    const item = tooltipItems[0];
+    let label = item.chart.data.labels[item.dataIndex];
+    if (Array.isArray(label)) {
+      return label.join(' ');
+    } else {
+      return label;
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const donutCtx = document.getElementById('dailyDonutChart').getContext('2d');
+    new Chart(donutCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Happy', 'Neutral', 'Surprised', 'Sad'],
+        datasets: [{
+          data: [45, 35, 15, 5],
+          backgroundColor: ['#4364F7', '#6FB1FC', '#0052D4', '#B9C2D8'],
+          borderColor: '#FFFFFF',
+          borderWidth: 4,
+          hoverOffset: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '70%',
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 20, font: { size: 14 }}},
+          tooltip: { callbacks: { title: tooltipTitleCallback, label: (c) => `${c.raw}%` } }
+        }
+      }
+    });
+
+    const lineCtx = document.getElementById('weeklyLineChart').getContext('2d');
+    new Chart(lineCtx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Confidence Level',
+          data: [2.8, 3.1, 3.5, 3.2, 2.9, 3.8, 4.1],
+          borderColor: '#4364F7',
+          backgroundColor: 'rgba(67, 100, 247, 0.1)',
+          fill: true,
+          tension: 0.4,
+          pointBackgroundColor: '#0052D4',
+          pointRadius: 5,
+          pointHoverRadius: 7
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: { y: { beginAtZero: true, title: { display: true, text: 'Avg. Confidence Score' } } },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { title: tooltipTitleCallback }, mode: 'index', intersect: false } },
+        interaction: { mode: 'nearest', axis: 'x', intersect: false }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
