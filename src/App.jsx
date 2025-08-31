@@ -7,6 +7,7 @@ import {
     Cat,
     ChevronDown,
     Code,
+    Download,
     Dumbbell,
     ExternalLink,
     FileText,
@@ -28,12 +29,12 @@ const portfolioData = {
     name: "Prafull Kumar",
     tagline: "Android Developer & Mobile Innovator",
     email: "prafullkumar384@gmail.com",
+    profileImage: "https://media.licdn.com/dms/image/v2/D4D03AQGmV1bcuDACPg/profile-displayphoto-shrink_400_400/B4DZb2bdrZHQAg-/0/1747891117340?e=1759363200&v=beta&t=mTYA8CIg0wwS6QBzWH62y9qWC8assE3KrY25fPB9N_g",
     links: {
         github: "https://github.com/prafullKrRj",
         linkedin: "https://www.linkedin.com/in/prafull-kumar-rj/",
         gplayDeveloper: "https://play.google.com/store/apps/developer?id=Prafull+Kumar",
-        leetcode: "https://leetcode.com/u/prafullkumar/",
-        // resume: "./Resume.pdf"
+        resume: "./Resume.pdf"
     },
     about: "I am a passionate Android Developer specializing in Kotlin and Jetpack Compose. With a strong foundation in clean architecture (MVVM) and modern development practices, I transform complex ideas into scalable, user-centric mobile applications. I thrive on solving intricate problems and am constantly exploring the integration of AI within the mobile ecosystem to build smarter, more intuitive experiences.",
     experience: [
@@ -88,19 +89,19 @@ const portfolioData = {
             icon: <Code size={32} className={styles.iconPurple}/>
         }
     ],
-    leetcodeStats: {
-        username: "prafullkumar",
-        totalSolved: 621,
-        easy: 185,
-        medium: 350,
-        hard: 86,
-        streak: 152,
-        rating: 1750,
-    },
-    githubStats: {
-        contributions: 1245,
-        streak: 210,
-    },
+    // leetcodeStats: {
+    //     username: "prafullkumar",
+    //     totalSolved: 621,
+    //     easy: 185,
+    //     medium: 350,
+    //     hard: 86,
+    //     streak: 152,
+    //     rating: 1750,
+    // },
+    // githubStats: {
+    //     contributions: 1245,
+    //     streak: 210,
+    // },
     skills: {
         languages: ["Kotlin", "Java", "SQL", "Python"],
         android: ["Jetpack Compose", "MVVM/MVI", "Room", "Dagger Hilt", "Coroutines", "Retrofit", "LiveData", "Koin", "Clean Architecture"],
@@ -206,99 +207,28 @@ const ExperienceCard = ({exp}) => {
     );
 };
 
-const LeetCodeStats = ({stats}) => {
-    const total = stats.totalSolved;
-    const easyP = (stats.easy / total) * 100;
-    const mediumP = (stats.medium / total) * 100;
-    const hardP = (stats.hard / total) * 100;
-
-    return (
-        <Card link={portfolioData.links.leetcode} className={styles.statsCard}>
-            <div className={styles.leetcodeGrid}>
-                <div>
-                    <h3 className={styles.statsTitle}>LeetCode Profile</h3>
-                    <p className={styles.username}>{stats.username}</p>
-                    <div className={styles.statsInfo}>
-                        <div className={styles.statItem}>
-                            <Target size={24} className={styles.statIcon}/>
-                            <div>
-                                <p className={styles.statNumber}>{stats.totalSolved}</p>
-                                <p className={styles.statLabel}>Problems Solved</p>
-                            </div>
-                        </div>
-                        <div className={styles.statItem}>
-                            <Flame size={24} className={styles.flameIcon}/>
-                            <div>
-                                <p className={styles.statNumber}>{stats.streak}</p>
-                                <p className={styles.statLabel}>Day Streak</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <p className={styles.distributionTitle}>Solved Distribution</p>
-                    <div className={styles.progressBar}>
-                        <div className={styles.progressEasy} style={{width: `${easyP}%`}}></div>
-                        <div className={styles.progressMedium} style={{width: `${mediumP}%`}}></div>
-                        <div className={styles.progressHard} style={{width: `${hardP}%`}}></div>
-                    </div>
-                    <div className={styles.distributionStats}>
-                        <p><span className={styles.easyText}>Easy:</span> {stats.easy}</p>
-                        <p><span className={styles.mediumText}>Medium:</span> {stats.medium}</p>
-                        <p><span className={styles.hardText}>Hard:</span> {stats.hard}</p>
-                    </div>
-                </div>
-            </div>
-        </Card>
-    );
-};
-
-const GitHubStats = ({stats}) => {
-    const generateHeatmap = () => {
-        let weeks = [];
-        for (let i = 0; i < 52; i++) {
-            let days = [];
-            for (let j = 0; j < 7; j++) {
-                const intensity = Math.random();
-                let intensityClass = styles.heatmapLow;
-                if (intensity > 0.9) intensityClass = styles.heatmapHigh;
-                else if (intensity > 0.7) intensityClass = styles.heatmapMediumHigh;
-                else if (intensity > 0.4) intensityClass = styles.heatmapMedium;
-                else if (intensity > 0.1) intensityClass = styles.heatmapMediumLow;
-                days.push(<div key={j} className={`${styles.heatmapCell} ${intensityClass}`}></div>);
-            }
-            weeks.push(<div key={i} className={styles.heatmapWeek}>{days}</div>);
-        }
-        return weeks;
+// Enhanced Resume Button Component
+const ResumeButton = () => {
+    const handleResumeClick = () => {
+        window.open('./Resume.pdf', '_blank');
     };
 
     return (
-        <Card link={portfolioData.links.github} className={styles.statsCard}>
-            <h3 className={styles.statsTitle}>GitHub Activity</h3>
-            <div className={styles.githubContainer}>
-                <div className={styles.heatmapContainer}>
-                    <div className={styles.heatmap}>
-                        {generateHeatmap()}
-                    </div>
+        <div className={styles.resumeWrapper}>
+            <button onClick={handleResumeClick} className={styles.resumeButton}>
+                <div className={styles.resumeIconWrapper}>
+                    <FileText size={20} />
                 </div>
-                <div className={styles.githubStats}>
-                    <div className={styles.statItem}>
-                        <GitCommit size={20} className={styles.statIcon}/>
-                        <div>
-                            <p className={styles.statNumber}>{stats.contributions}</p>
-                            <p className={styles.statLabelSmall}>Total Contributions</p>
-                        </div>
-                    </div>
-                    <div className={styles.statItem}>
-                        <Zap size={20} className={styles.zapIcon}/>
-                        <div>
-                            <p className={styles.statNumber}>{stats.streak}</p>
-                            <p className={styles.statLabelSmall}>Longest Streak</p>
-                        </div>
-                    </div>
+                <div className={styles.resumeContent}>
+                    <span className={styles.resumeText}>View Resume</span>
+                    <span className={styles.resumeSubtext}>Download PDF</span>
                 </div>
-            </div>
-        </Card>
+                <div className={styles.resumeArrow}>
+                    <Download size={18} />
+                </div>
+            </button>
+            <div className={styles.resumeGlow}></div>
+        </div>
     );
 };
 
@@ -309,12 +239,13 @@ export default function App() {
         name,
         tagline,
         email,
+        profileImage,
         links,
         about,
         experience,
         personalProjects,
-        leetcodeStats,
-        githubStats,
+        // leetcodeStats,
+        // githubStats,
         skills,
         education,
         achievements
@@ -355,7 +286,8 @@ export default function App() {
 
     const navLinks = [
         {href: "#experience", label: "Experience", id: "experience"},
-        {href: "#stats", label: "Stats", id: "stats"},
+        // Remove stats from navigation
+        // {href: "#stats", label: "Stats", id: "stats"},
         {href: "#projects", label: "Projects", id: "projects"},
         {href: "#skills", label: "Skills", id: "skills"},
     ];
@@ -369,9 +301,32 @@ export default function App() {
 
                     <header className={styles.header}>
                         <div>
-                            <h1 className={styles.mainTitle}>{name}</h1>
-                            <h2 className={styles.tagline}>{tagline}</h2>
+                            <div className={styles.profileSection}>
+                                <div className={styles.profileImageContainer}>
+                                    <div className={styles.profileImageWrapper}>
+                                        <img 
+                                            src={profileImage} 
+                                            alt="Prafull Kumar" 
+                                            className={styles.profileImage}
+                                            onError={(e) => {
+                                                e.target.style.display = 'none';
+                                            }}
+                                        />
+                                        <div className={styles.profileImageOverlay}></div>
+                                        <div className={styles.profileImageBorder}></div>
+                                    </div>
+                                    <div className={styles.profileStatus}>
+                                        <div className={styles.statusDot}></div>
+                                        <span className={styles.statusText}>Available for work</span>
+                                    </div>
+                                </div>
+                                <div className={styles.profileContent}>
+                                    <h1 className={styles.mainTitle}>{name}</h1>
+                                    <h2 className={styles.tagline}>{tagline}</h2>
+                                </div>
+                            </div>
                             <p className={styles.aboutText}>{about}</p>
+                            <ResumeButton />
                             <nav className={styles.desktopNav}>
                                 <ul className={styles.navList}>
                                     {navLinks.map(link => (
@@ -395,8 +350,6 @@ export default function App() {
                                className={styles.socialLink}><Linkedin size={24}/></a>
                             <a href={links.gplayDeveloper} target="_blank" rel="noopener noreferrer"
                                aria-label="Google Play Developer" className={styles.socialLink}><Smartphone size={24}/></a>
-                            <a href={links.leetcode} target="_blank" rel="noopener noreferrer" aria-label="LeetCode"
-                               className={styles.socialLink}><Code size={24}/></a>
                             <a href={`mailto:${email}`} aria-label="Email" className={styles.socialLink}><Mail
                                 size={24}/></a>
                         </div>
@@ -407,12 +360,13 @@ export default function App() {
                             {experience.map(exp => <ExperienceCard key={exp.company} exp={exp}/>)}
                         </Section>
 
-                        <Section id="stats" title="Coding Stats" icon={<Zap/>}>
+                        {/* Comment out stats section */}
+                        {/* <Section id="stats" title="Coding Stats" icon={<Zap/>}>
                             <div className={styles.statsContainer}>
                                 <LeetCodeStats stats={leetcodeStats}/>
                                 <GitHubStats stats={githubStats}/>
                             </div>
-                        </Section>
+                        </Section> */}
 
                         <Section id="projects" title="Personal Apps & Projects" icon={<Star/>}>
                             <div className={styles.projectsGrid}>
