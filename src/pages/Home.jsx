@@ -17,20 +17,20 @@ const profile = {
   email: 'prafullkumar384@gmail.com',
   links: {
     github: 'https://github.com/prafullKrRj',
-    linkedin: 'https://www.linkedin.com/in/prafull-kumar-rj/',
+    linkedin: 'https://www.linkedin.com/in/prafull-kumar-rajput/',
     gplayDeveloper: 'https://play.google.com/store/apps/developer?id=Prafull+Kumar',
     resume: './Resume.pdf'
   }
 };
 
 const background = {
-  role: 'Android Developer',
-  company: 'Warewe Consultancy Pvt. Ltd.',
-  period: 'Professional Engagement',
+  role: 'Focus Areas',
+  company: 'Android-first apps, backend services, and data tooling',
+  period: 'Independent builds & continuous learning',
   highlights: [
-    'Led end-to-end delivery of utility-focused Android applications with clear release pipelines.',
-    'Optimized app performance with profiling, reducing memory usage and improving UI responsiveness.',
-    'Collaborated with design and QA to ensure clean, accessible user journeys.'
+    'Android-first product engineering with Jetpack Compose and scalable architecture.',
+    'API integrations and backend services that support mobile experiences.',
+    'Performance tuning and accessibility checks to keep UX responsive.'
   ],
   education: {
     institution: 'Army Institute of Technology, Pune',
@@ -41,9 +41,24 @@ const background = {
 };
 
 const skills = {
-  backend: ['Django', 'Spring Boot', 'Python'],
-  mobile: ['Android (Kotlin)', 'Jetpack Compose', 'Dagger Hilt', 'Retrofit'],
-  cloud: ['Firebase', 'PostgreSQL', 'MongoDB']
+  backend: [
+    { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
+    { name: 'Django', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg' },
+    { name: 'Spring Boot', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg' }
+  ],
+  mobile: [
+    { name: 'Android', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg' },
+    { name: 'Kotlin', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg' },
+    {
+      name: 'Jetpack Compose',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jetpackcompose/jetpackcompose-original.svg'
+    }
+  ],
+  cloud: [
+    { name: 'Firebase', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg' },
+    { name: 'PostgreSQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg' },
+    { name: 'MongoDB', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' }
+  ]
 };
 
 const contributionLevels = [
@@ -58,6 +73,12 @@ const languageStats = [
   { label: 'TypeScript', value: 16 }
 ];
 
+const leetcodeProfileUrl = 'https://leetcode.com/prafullkumar/';
+
+const screenshotProjects = [
+  { name: 'Codeforcesly', path: '/apps/codeforcesly' }
+];
+
 export default function Home() {
   return (
     <main className={styles.page}>
@@ -69,7 +90,7 @@ export default function Home() {
           animate="visible"
         >
           <div>
-            <p className={styles.heroEyebrow}>Moonlighting Developer Portfolio</p>
+            <p className={styles.heroEyebrow}>Android Developer Portfolio</p>
             <h1 className={styles.heroTitle}>{profile.name}</h1>
             <p className={styles.heroSubtitle}>{profile.tagline}</p>
           </div>
@@ -172,21 +193,25 @@ export default function Home() {
               <div className={styles.statTile}>
                 <div className={styles.statHeader}>
                   <h3>LeetCode</h3>
-                  <span className={styles.mutedText}>Competitive track</span>
+                  <span className={styles.mutedText}>Live profile window</span>
                 </div>
-                <div className={styles.leetcodeStats}>
-                  <div>
-                    <p className={styles.statNumber}>600+</p>
-                    <p className={styles.mutedText}>Problems Solved</p>
-                  </div>
-                  <div>
-                    <p className={styles.statNumber}>Rank: 18,000</p>
-                    <p className={styles.mutedText}>Global Standing</p>
-                  </div>
-                  <div>
-                    <p className={styles.statNumber}>Top 5%</p>
-                    <p className={styles.mutedText}>Contest Percentile</p>
-                  </div>
+                <div className={styles.leetcodeEmbed}>
+                  <iframe
+                    className={styles.leetcodeFrame}
+                    title="LeetCode profile for prafullkumar"
+                    src={leetcodeProfileUrl}
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin"
+                  />
+                  <a
+                    className={styles.textLink}
+                    href={leetcodeProfileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open LeetCode Profile
+                    <ArrowUpRight size={16} />
+                  </a>
                 </div>
               </div>
             </div>
@@ -205,24 +230,33 @@ export default function Home() {
             <div className={styles.skillGroup}>
               <h3 className={styles.skillTitle}>Backend</h3>
               <div className={styles.tagRow}>
-                {skills.backend.map(item => (
-                  <span key={item} className={styles.tag}>{item}</span>
+                {skills.backend.map(skill => (
+                  <span key={skill.name} className={styles.skillTag}>
+                    <img className={styles.skillLogo} src={skill.logo} alt={`${skill.name} logo`} loading="lazy" />
+                    {skill.name}
+                  </span>
                 ))}
               </div>
             </div>
             <div className={styles.skillGroup}>
               <h3 className={styles.skillTitle}>Mobile</h3>
               <div className={styles.tagRow}>
-                {skills.mobile.map(item => (
-                  <span key={item} className={styles.tag}>{item}</span>
+                {skills.mobile.map(skill => (
+                  <span key={skill.name} className={styles.skillTag}>
+                    <img className={styles.skillLogo} src={skill.logo} alt={`${skill.name} logo`} loading="lazy" />
+                    {skill.name}
+                  </span>
                 ))}
               </div>
             </div>
             <div className={styles.skillGroup}>
               <h3 className={styles.skillTitle}>Cloud & DB</h3>
               <div className={styles.tagRow}>
-                {skills.cloud.map(item => (
-                  <span key={item} className={styles.tag}>{item}</span>
+                {skills.cloud.map(skill => (
+                  <span key={skill.name} className={styles.skillTag}>
+                    <img className={styles.skillLogo} src={skill.logo} alt={`${skill.name} logo`} loading="lazy" />
+                    {skill.name}
+                  </span>
                 ))}
               </div>
             </div>
@@ -236,8 +270,8 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            <p className={styles.cardEyebrow}>Background</p>
-            <h2 className={styles.sectionHeading}>Professional Story</h2>
+            <p className={styles.cardEyebrow}>Profile</p>
+            <h2 className={styles.sectionHeading}>Focus & Education</h2>
             <div className={styles.backgroundBlock}>
               <div>
                 <h3 className={styles.backgroundTitle}>{background.role}</h3>
@@ -273,12 +307,25 @@ export default function Home() {
               <Link to="/apps/roadmapcreator" className={styles.appLink}>Roadmap Creator</Link>
               <Link to="/beproject" className={styles.appLink}>CueSight Report</Link>
             </div>
+            <div className={styles.screenshotList}>
+              <p className={styles.mutedText}>Projects with screenshots:</p>
+              <ul className={styles.bulletList}>
+                {screenshotProjects.map(project => (
+                  <li key={project.name}>
+                    <Link to={project.path} className={styles.textLink}>
+                      {project.name}
+                      <ArrowUpRight size={16} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.section>
         </div>
 
         <footer className={styles.footer}>
           <p>Designed & built with React, router-driven sections, and a minimalist Bento layout.</p>
-          <p>Available for selective moonlighting engagements and focused collaborations.</p>
+          <p>Focused on building accessible mobile experiences with thoughtful system design.</p>
         </footer>
       </div>
     </main>

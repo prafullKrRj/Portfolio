@@ -9,7 +9,7 @@ import ProjectDetail from './pages/ProjectDetail';
 const navItems = [
     { label: 'Home', to: '/' },
     { label: 'Projects', to: '/#projects', anchor: true },
-    { label: 'Background', to: '/#background', anchor: true },
+    { label: 'Profile', to: '/#background', anchor: true },
     { label: 'Stats', to: '/#stats', anchor: true },
     { label: 'Apps', to: '/#apps', anchor: true }
 ];
